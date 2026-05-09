@@ -11,6 +11,14 @@ from pokemon_helper import get_daily_pokemon
 page_title="Eden's Homeschool Quest",
 page_icon="🌟",
 layout="centered"
+#------------------------------------------------------------------------------
+st.markdown("""
+<style>
+.stApp {
+    background-color: #ffd6eb;
+}
+</style>
+""", unsafe_allow_html=True)
 
 
 
