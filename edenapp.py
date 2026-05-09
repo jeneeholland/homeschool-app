@@ -8,14 +8,50 @@ from pokemon_helper import get_daily_pokemon
 #### py -m streamlit run edenapp.py 
 #------------------------- PAGE CONFIG ------------------------------------------
 # st.set_page_config(
-page_title="Eden's Homeschool Quest",
+page_title="Homeschool Quest",
 page_icon="🌟",
 layout="centered"
 #------------------------------------------------------------------------------
 st.markdown("""
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
+
+html, body, [class*="css"] {
+    font-family: 'Fredoka', sans-serif;
+}
+
 .stApp {
-    background-color: #ffd6eb;
+    background-color: #ffe6f2;
+}
+
+h1 {
+    font-size: 3rem !important;
+    color: #ff4fa3 !important;
+    text-align: center;
+    font-weight: 700 !important;
+}
+
+h2, h3 {
+    color: #6a4cff !important;
+    font-weight: 700 !important;
+}
+
+p, div, label {
+    font-size: 1.1rem !important;
+}
+
+.stCheckbox label {
+    font-size: 1.2rem !important;
+    font-weight: 600 !important;
+}
+
+[data-testid="stMarkdownContainer"] {
+    font-size: 1.1rem;
+}
+
+.block-container {
+    max-width: 850px;
+    padding-top: 2rem;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -48,17 +84,18 @@ weather = response.json()["current"]
 temperature = round(weather["temperature_2m"])
 weather_code = weather["weather_code"]
 
-st.title("Eden's Homeschool Quest Board")
+st.title("Homeschool Quest Board")
 
 st.write(f"Today is {date_text}.")
 st.write(f"Weather: {temperature}°F")
 #----------------------------------------------------------------------------------
 st.subheader("🎮 Pokémon Companion of the Day")
 
-pokemon_name, pokemon_image = get_daily_pokemon()
+pokemon_name, pokemon_image, pokemon_types = get_daily_pokemon()
 
 st.write(f"Today's Pokémon is: **{pokemon_name}**!")
 st.image(pokemon_image, width=200)
+st.write("Type:", ", ".join(pokemon_types))
 #----------------------------------------------------------------------------------
 st.subheader("🎯 Today’s Quests")
 

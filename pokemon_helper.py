@@ -15,4 +15,9 @@ def get_daily_pokemon():
     pokemon_name = pokemon_data["name"].title()
     pokemon_image = pokemon_data["sprites"]["front_default"]
 
-    return pokemon_name, pokemon_image
+    pokemon_types = [
+    item["type"]["name"].title()
+    for item in pokemon_data["types"]
+]
+
+    return pokemon_name, pokemon_image, pokemon_types
