@@ -3,6 +3,7 @@ from datetime import datetime
 import requests
 import random
 from pokemon_helper import get_daily_pokemon
+from dailyquote import get_daily_quote
 
 #### py -m streamlit run edenapp.py --server.address 0.0.0.0 --server.port 8501
 #### py -m streamlit run edenapp.py 
@@ -88,7 +89,17 @@ st.title("Homeschool Quest Board")
 
 st.subheader(f"Today is {date_text}.")
 st.subheader(f"Weather: {temperature}°F")
+
 #----------------------------------------------------------------------------------
+quote_data = get_daily_quote()
+
+st.subheader(" 🤓Today’s Quote")
+st.write(quote_data)
+
+
+#-----------------------------------------------------------------------------------
+
+
 st.subheader("🎮 Pokémon Companions of the Day")
 
 daily_pokemon = get_daily_pokemon()
@@ -101,18 +112,7 @@ for col, pokemon in zip(cols, daily_pokemon):
         st.image(pokemon["image"], width=150)
         st.write("Type:", ", ".join(pokemon["types"]))
 #----------------------------------------------------------------------------------
-st.subheader("🎯 Today’s Quests")
 
-math = st.checkbox("Math")
-reading = st.checkbox("Spelling")
-grammar = st.checkbox("BJU English")
-spanish = st.checkbox("Spanish")
-science = st.checkbox("Typing")
 
-completed = sum([math, reading, grammar, spanish, science])
-st.progress(completed / 5)
+#-----------------------------------------------------------------------------------
 
-st.write(f"You completed {completed} out of 5 quests!")
-if completed == 5:
-    st.balloons()
-    st.success("🎉 Great job, Eden! You completed all your quests today!")
