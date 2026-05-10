@@ -89,13 +89,17 @@ st.title("Homeschool Quest Board")
 st.write(f"Today is {date_text}.")
 st.write(f"Weather: {temperature}°F")
 #----------------------------------------------------------------------------------
-st.subheader("🎮 Pokémon Companion of the Day")
+st.subheader("🎮 Pokémon Companions of the Day")
 
-pokemon_name, pokemon_image, pokemon_types = get_daily_pokemon()
+daily_pokemon = get_daily_pokemon()
 
-st.write(f"Today's Pokémon is: **{pokemon_name}**!")
-st.image(pokemon_image, width=200)
-st.write("Type:", ", ".join(pokemon_types))
+cols = st.columns(3)
+
+for col, pokemon in zip(cols, daily_pokemon):
+    with col:
+        st.write(f"**{pokemon['name']}**")
+        st.image(pokemon["image"], width=150)
+        st.write("Type:", ", ".join(pokemon["types"]))
 #----------------------------------------------------------------------------------
 st.subheader("🎯 Today’s Quests")
 
