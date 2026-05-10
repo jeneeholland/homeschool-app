@@ -86,8 +86,8 @@ weather_code = weather["weather_code"]
 
 st.title("Homeschool Quest Board")
 
-st.write(f"Today is {date_text}.")
-st.write(f"Weather: {temperature}°F")
+st.subheader(f"Today is {date_text}.")
+st.subheader(f"Weather: {temperature}°F")
 #----------------------------------------------------------------------------------
 st.subheader("🎮 Pokémon Companions of the Day")
 
