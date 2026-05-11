@@ -113,6 +113,12 @@ for col, pokemon in zip(cols, daily_pokemon):
         st.write("Type:", ", ".join(pokemon["types"]))
 #----------------------------------------------------------------------------------
 
+from llm_helper import make_pokemon_story
+pokemon_names = [pokemon["name"] for pokemon in daily_pokemon]
 
+story = make_pokemon_story(pokemon_names)
+
+st.subheader("📖 Today's Pokémon Story")
+st.write(story)
 #-----------------------------------------------------------------------------------
 
