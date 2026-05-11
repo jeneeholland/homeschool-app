@@ -1,9 +1,10 @@
 # story_helper.py
 
+import streamlit as st
 from google import genai
 
 def make_pokemon_story(pokemon_names):
-    client = genai.Client(api_key="AIzaSyBzO8UXGHJrxqYkds-ZIBnUb1rKxg_6aok")  # uses GEMINI_API_KEY from your environment
+    client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"]) # uses GEMINI_API_KEY from your environment
 
     prompt = f"""
     Write a short, fun, age-appropriate story for a 9-year-old.
@@ -19,7 +20,8 @@ def make_pokemon_story(pokemon_names):
     """
 
     response = client.models.generate_content(
-        model="gemini-3-flash-preview",
+        #model="gemini-3-flash-preview",
+        model="gemini-2.5-flash",
         contents=prompt
     )
 
